@@ -121,282 +121,409 @@ macro_rules! test( ($name:ident, $toml:expr, $json:expr) => (
     fn $name() { run($toml, $json); }
 ) );
 
-test!(
-    array_empty,
-    include_str!("valid/array-empty.toml"),
-    include_str!("valid/array-empty.json")
-);
-test!(
-    array_nospaces,
-    include_str!("valid/array-nospaces.toml"),
-    include_str!("valid/array-nospaces.json")
-);
-test!(
-    arrays_hetergeneous,
-    include_str!("valid/arrays-hetergeneous.toml"),
-    include_str!("valid/arrays-hetergeneous.json")
-);
-test!(
-    arrays,
-    include_str!("valid/arrays.toml"),
-    include_str!("valid/arrays.json")
-);
-test!(
-    arrays_nested,
-    include_str!("valid/arrays-nested.toml"),
-    include_str!("valid/arrays-nested.json")
-);
-test!(
-    array_mixed_types_ints_and_floats,
-    include_str!("valid/array-mixed-types-ints-and-floats.toml"),
-    include_str!("valid/array-mixed-types-ints-and-floats.json")
-);
-test!(
-    array_mixed_types_arrays_and_ints,
-    include_str!("valid/array-mixed-types-arrays-and-ints.toml"),
-    include_str!("valid/array-mixed-types-arrays-and-ints.json")
-);
-test!(
-    array_mixed_types_strings_and_ints,
-    include_str!("valid/array-mixed-types-strings-and-ints.toml"),
-    include_str!("valid/array-mixed-types-strings-and-ints.json")
-);
-test!(
-    empty,
-    include_str!("valid/empty.toml"),
-    include_str!("valid/empty.json")
-);
-test!(
-    bool,
-    include_str!("valid/bool.toml"),
-    include_str!("valid/bool.json")
-);
-test!(
-    comments_everywhere,
-    include_str!("valid/comments-everywhere.toml"),
-    include_str!("valid/comments-everywhere.json")
-);
-test!(
-    datetime,
-    include_str!("valid/datetime.toml"),
-    include_str!("valid/datetime.json")
-);
-test!(
-    example,
-    include_str!("valid/example.toml"),
-    include_str!("valid/example.json")
-);
-test!(
-    float,
-    include_str!("valid/float.toml"),
-    include_str!("valid/float.json")
-);
-test!(
-    implicit_and_explicit_after,
-    include_str!("valid/implicit-and-explicit-after.toml"),
-    include_str!("valid/implicit-and-explicit-after.json")
-);
-test!(
-    implicit_and_explicit_before,
-    include_str!("valid/implicit-and-explicit-before.toml"),
-    include_str!("valid/implicit-and-explicit-before.json")
-);
-test!(
-    implicit_groups,
-    include_str!("valid/implicit-groups.toml"),
-    include_str!("valid/implicit-groups.json")
-);
-test!(
-    integer,
-    include_str!("valid/integer.toml"),
-    include_str!("valid/integer.json")
-);
-test!(
-    key_equals_nospace,
-    include_str!("valid/key-equals-nospace.toml"),
-    include_str!("valid/key-equals-nospace.json")
-);
-test!(
-    key_space,
-    include_str!("valid/key-space.toml"),
-    include_str!("valid/key-space.json")
-);
-test!(
-    key_special_chars,
-    include_str!("valid/key-special-chars.toml"),
-    include_str!("valid/key-special-chars.json")
-);
-test!(
-    key_with_pound,
-    include_str!("valid/key-with-pound.toml"),
-    include_str!("valid/key-with-pound.json")
-);
-test!(
-    key_empty,
-    include_str!("valid/key-empty.toml"),
-    include_str!("valid/key-empty.json")
-);
-test!(
-    long_float,
-    include_str!("valid/long-float.toml"),
-    include_str!("valid/long-float.json")
-);
-test!(
-    long_integer,
-    include_str!("valid/long-integer.toml"),
-    include_str!("valid/long-integer.json")
-);
-test!(
-    multiline_string,
-    include_str!("valid/multiline-string.toml"),
-    include_str!("valid/multiline-string.json")
-);
-test!(
-    raw_multiline_string,
-    include_str!("valid/raw-multiline-string.toml"),
-    include_str!("valid/raw-multiline-string.json")
-);
-test!(
-    raw_string,
-    include_str!("valid/raw-string.toml"),
-    include_str!("valid/raw-string.json")
-);
-test!(
-    string_empty,
-    include_str!("valid/string-empty.toml"),
-    include_str!("valid/string-empty.json")
-);
-test!(
-    string_escapes,
-    include_str!("valid/string-escapes.toml"),
-    include_str!("valid/string-escapes.json")
-);
-test!(
-    string_simple,
-    include_str!("valid/string-simple.toml"),
-    include_str!("valid/string-simple.json")
-);
-test!(
-    string_with_pound,
-    include_str!("valid/string-with-pound.toml"),
-    include_str!("valid/string-with-pound.json")
-);
-test!(
-    table_array_implicit,
-    include_str!("valid/table-array-implicit.toml"),
-    include_str!("valid/table-array-implicit.json")
-);
-test!(
-    table_array_many,
-    include_str!("valid/table-array-many.toml"),
-    include_str!("valid/table-array-many.json")
-);
-test!(
-    table_array_nest,
-    include_str!("valid/table-array-nest.toml"),
-    include_str!("valid/table-array-nest.json")
-);
-test!(
-    table_array_one,
-    include_str!("valid/table-array-one.toml"),
-    include_str!("valid/table-array-one.json")
-);
-test!(
-    table_empty,
-    include_str!("valid/table-empty.toml"),
-    include_str!("valid/table-empty.json")
-);
-test!(
-    table_sub_empty,
-    include_str!("valid/table-sub-empty.toml"),
-    include_str!("valid/table-sub-empty.json")
-);
-test!(
-    table_multi_empty,
-    include_str!("valid/table-multi-empty.toml"),
-    include_str!("valid/table-multi-empty.json")
-);
-test!(
-    table_whitespace,
-    include_str!("valid/table-whitespace.toml"),
-    include_str!("valid/table-whitespace.json")
-);
-test!(
-    table_with_pound,
-    include_str!("valid/table-with-pound.toml"),
-    include_str!("valid/table-with-pound.json")
-);
-test!(
-    unicode_escape,
-    include_str!("valid/unicode-escape.toml"),
-    include_str!("valid/unicode-escape.json")
-);
-test!(
-    unicode_literal,
-    include_str!("valid/unicode-literal.toml"),
-    include_str!("valid/unicode-literal.json")
-);
-test!(
-    hard_example,
-    include_str!("valid/hard_example.toml"),
-    include_str!("valid/hard_example.json")
-);
-test!(
-    example2,
-    include_str!("valid/example2.toml"),
-    include_str!("valid/example2.json")
-);
-test!(
-    example3,
-    include_str!("valid/example-v0.3.0.toml"),
-    include_str!("valid/example-v0.3.0.json")
-);
-test!(
-    example4,
-    include_str!("valid/example-v0.4.0.toml"),
-    include_str!("valid/example-v0.4.0.json")
-);
-test!(
-    example_bom,
-    include_str!("valid/example-bom.toml"),
-    include_str!("valid/example.json")
-);
+mod tests {
+    use crate::{run, Toml};
 
-test!(
-    datetime_truncate,
-    include_str!("valid/datetime-truncate.toml"),
-    include_str!("valid/datetime-truncate.json")
-);
-test!(
-    key_quote_newline,
-    include_str!("valid/key-quote-newline.toml"),
-    include_str!("valid/key-quote-newline.json")
-);
-test!(
-    table_array_nest_no_keys,
-    include_str!("valid/table-array-nest-no-keys.toml"),
-    include_str!("valid/table-array-nest-no-keys.json")
-);
-test!(
-    dotted_keys,
-    include_str!("valid/dotted-keys.toml"),
-    include_str!("valid/dotted-keys.json")
-);
+    test!(
+        array_empty,
+        include_str!("valid/array-empty.toml"),
+        include_str!("valid/array-empty.json")
+    );
+    test!(
+        array_nospaces,
+        include_str!("valid/array-nospaces.toml"),
+        include_str!("valid/array-nospaces.json")
+    );
+    test!(
+        arrays_hetergeneous,
+        include_str!("valid/arrays-hetergeneous.toml"),
+        include_str!("valid/arrays-hetergeneous.json")
+    );
+    test!(
+        arrays,
+        include_str!("valid/arrays.toml"),
+        include_str!("valid/arrays.json")
+    );
+    test!(
+        arrays_nested,
+        include_str!("valid/arrays-nested.toml"),
+        include_str!("valid/arrays-nested.json")
+    );
+    test!(
+        array_mixed_types_ints_and_floats,
+        include_str!("valid/array-mixed-types-ints-and-floats.toml"),
+        include_str!("valid/array-mixed-types-ints-and-floats.json")
+    );
+    test!(
+        array_mixed_types_arrays_and_ints,
+        include_str!("valid/array-mixed-types-arrays-and-ints.toml"),
+        include_str!("valid/array-mixed-types-arrays-and-ints.json")
+    );
+    test!(
+        array_mixed_types_strings_and_ints,
+        include_str!("valid/array-mixed-types-strings-and-ints.toml"),
+        include_str!("valid/array-mixed-types-strings-and-ints.json")
+    );
+    test!(
+        empty,
+        include_str!("valid/empty.toml"),
+        include_str!("valid/empty.json")
+    );
+    test!(
+        bool,
+        include_str!("valid/bool.toml"),
+        include_str!("valid/bool.json")
+    );
+    test!(
+        comments_everywhere,
+        include_str!("valid/comments-everywhere.toml"),
+        include_str!("valid/comments-everywhere.json")
+    );
+    test!(
+        datetime,
+        include_str!("valid/datetime.toml"),
+        include_str!("valid/datetime.json")
+    );
+    test!(
+        example,
+        include_str!("valid/example.toml"),
+        include_str!("valid/example.json")
+    );
+    test!(
+        float,
+        include_str!("valid/float.toml"),
+        include_str!("valid/float.json")
+    );
+    test!(
+        implicit_and_explicit_after,
+        include_str!("valid/implicit-and-explicit-after.toml"),
+        include_str!("valid/implicit-and-explicit-after.json")
+    );
+    test!(
+        implicit_and_explicit_before,
+        include_str!("valid/implicit-and-explicit-before.toml"),
+        include_str!("valid/implicit-and-explicit-before.json")
+    );
+    test!(
+        implicit_groups,
+        include_str!("valid/implicit-groups.toml"),
+        include_str!("valid/implicit-groups.json")
+    );
+    test!(
+        integer,
+        include_str!("valid/integer.toml"),
+        include_str!("valid/integer.json")
+    );
+    test!(
+        key_equals_nospace,
+        include_str!("valid/key-equals-nospace.toml"),
+        include_str!("valid/key-equals-nospace.json")
+    );
+    test!(
+        key_space,
+        include_str!("valid/key-space.toml"),
+        include_str!("valid/key-space.json")
+    );
+    test!(
+        key_special_chars,
+        include_str!("valid/key-special-chars.toml"),
+        include_str!("valid/key-special-chars.json")
+    );
+    test!(
+        key_with_pound,
+        include_str!("valid/key-with-pound.toml"),
+        include_str!("valid/key-with-pound.json")
+    );
+    test!(
+        key_empty,
+        include_str!("valid/key-empty.toml"),
+        include_str!("valid/key-empty.json")
+    );
+    test!(
+        long_float,
+        include_str!("valid/long-float.toml"),
+        include_str!("valid/long-float.json")
+    );
+    test!(
+        long_integer,
+        include_str!("valid/long-integer.toml"),
+        include_str!("valid/long-integer.json")
+    );
+    test!(
+        multiline_string,
+        include_str!("valid/multiline-string.toml"),
+        include_str!("valid/multiline-string.json")
+    );
+    test!(
+        raw_multiline_string,
+        include_str!("valid/raw-multiline-string.toml"),
+        include_str!("valid/raw-multiline-string.json")
+    );
+    test!(
+        raw_string,
+        include_str!("valid/raw-string.toml"),
+        include_str!("valid/raw-string.json")
+    );
+    test!(
+        string_empty,
+        include_str!("valid/string-empty.toml"),
+        include_str!("valid/string-empty.json")
+    );
+    test!(
+        string_escapes,
+        include_str!("valid/string-escapes.toml"),
+        include_str!("valid/string-escapes.json")
+    );
+    test!(
+        string_simple,
+        include_str!("valid/string-simple.toml"),
+        include_str!("valid/string-simple.json")
+    );
+    test!(
+        string_with_pound,
+        include_str!("valid/string-with-pound.toml"),
+        include_str!("valid/string-with-pound.json")
+    );
+    test!(
+        table_array_implicit,
+        include_str!("valid/table-array-implicit.toml"),
+        include_str!("valid/table-array-implicit.json")
+    );
+    test!(
+        table_array_many,
+        include_str!("valid/table-array-many.toml"),
+        include_str!("valid/table-array-many.json")
+    );
+    test!(
+        table_array_nest,
+        include_str!("valid/table-array-nest.toml"),
+        include_str!("valid/table-array-nest.json")
+    );
+    test!(
+        table_array_one,
+        include_str!("valid/table-array-one.toml"),
+        include_str!("valid/table-array-one.json")
+    );
+    test!(
+        table_empty,
+        include_str!("valid/table-empty.toml"),
+        include_str!("valid/table-empty.json")
+    );
+    test!(
+        table_sub_empty,
+        include_str!("valid/table-sub-empty.toml"),
+        include_str!("valid/table-sub-empty.json")
+    );
+    test!(
+        table_multi_empty,
+        include_str!("valid/table-multi-empty.toml"),
+        include_str!("valid/table-multi-empty.json")
+    );
+    test!(
+        table_whitespace,
+        include_str!("valid/table-whitespace.toml"),
+        include_str!("valid/table-whitespace.json")
+    );
+    test!(
+        table_with_pound,
+        include_str!("valid/table-with-pound.toml"),
+        include_str!("valid/table-with-pound.json")
+    );
+    test!(
+        unicode_escape,
+        include_str!("valid/unicode-escape.toml"),
+        include_str!("valid/unicode-escape.json")
+    );
+    test!(
+        unicode_literal,
+        include_str!("valid/unicode-literal.toml"),
+        include_str!("valid/unicode-literal.json")
+    );
+    test!(
+        hard_example,
+        include_str!("valid/hard_example.toml"),
+        include_str!("valid/hard_example.json")
+    );
+    test!(
+        example2,
+        include_str!("valid/example2.toml"),
+        include_str!("valid/example2.json")
+    );
+    test!(
+        example3,
+        include_str!("valid/example-v0.3.0.toml"),
+        include_str!("valid/example-v0.3.0.json")
+    );
+    test!(
+        example4,
+        include_str!("valid/example-v0.4.0.toml"),
+        include_str!("valid/example-v0.4.0.json")
+    );
+    test!(
+        example_bom,
+        include_str!("valid/example-bom.toml"),
+        include_str!("valid/example.json")
+    );
 
-test!(
-    quote_surrounded_value,
-    include_str!("valid/quote-surrounded-value.toml"),
-    include_str!("valid/quote-surrounded-value.json")
-);
+    test!(
+        datetime_truncate,
+        include_str!("valid/datetime-truncate.toml"),
+        include_str!("valid/datetime-truncate.json")
+    );
+    test!(
+        key_quote_newline,
+        include_str!("valid/key-quote-newline.toml"),
+        include_str!("valid/key-quote-newline.json")
+    );
+    test!(
+        table_array_nest_no_keys,
+        include_str!("valid/table-array-nest-no-keys.toml"),
+        include_str!("valid/table-array-nest-no-keys.json")
+    );
+    test!(
+        dotted_keys,
+        include_str!("valid/dotted-keys.toml"),
+        include_str!("valid/dotted-keys.json")
+    );
 
-test!(
-    float_exponent,
-    include_str!("valid/float-exponent.toml"),
-    include_str!("valid/float-exponent.json")
-);
+    test!(
+        quote_surrounded_value,
+        include_str!("valid/quote-surrounded-value.toml"),
+        include_str!("valid/quote-surrounded-value.json")
+    );
 
-test!(
-    string_delim_end,
-    include_str!("valid/string-delim-end.toml"),
-    include_str!("valid/string-delim-end.json")
-);
+    test!(
+        float_exponent,
+        include_str!("valid/float-exponent.toml"),
+        include_str!("valid/float-exponent.json")
+    );
+
+    test!(
+        string_delim_end,
+        include_str!("valid/string-delim-end.toml"),
+        include_str!("valid/string-delim-end.json")
+    );
+
+    #[test]
+    fn test_get_bool() {
+        let toml_raw = include_str!("valid/example-v0.4.0.toml");
+        let toml: Toml = toml_raw.parse().unwrap();
+
+        let value = toml.get("boolean").unwrap();
+
+        assert_eq!(true, value.get_bool("True", None));
+        assert_eq!(false, value.get_bool("False", None));
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_get_bool_fail() {
+        let toml_raw = include_str!("valid/example-v0.4.0.toml");
+        let toml: Toml = toml_raw.parse().unwrap();
+
+        let value = toml.get("boolean").unwrap();
+        value.get_table("key5", None);
+    }
+
+    #[test]
+    fn test_get_float() {
+        let toml_raw = include_str!("valid/example-v0.4.0.toml");
+        let toml: Toml = toml_raw.parse().unwrap();
+
+        let value = toml.get("float").unwrap();
+        let value = value.get("fractional").unwrap();
+
+        assert_eq!(1.0, value.get_float("key1", None));
+        assert_eq!(3.1415, value.get_float("key2", None));
+        assert_eq!(-0.01, value.get_float("key3", None));
+
+        for ix in 0..10 {
+            assert_eq!(
+                ix as f64,
+                value.get_float("ksdjfalksdflaskdjlkasdj", Some(ix as f64))
+            );
+        }
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_get_float_fail() {
+        let toml_raw = include_str!("valid/example-v0.4.0.toml");
+        let toml: Toml = toml_raw.parse().unwrap();
+
+        let value = toml.get("float").unwrap();
+        let value = value.get("fractional").unwrap();
+        value.get_float("ksdjfalksdflaskdjlkasdj", None);
+    }
+
+    #[test]
+    fn test_get_integer() {
+        let toml_raw = include_str!("valid/example-v0.4.0.toml");
+        let toml: Toml = toml_raw.parse().unwrap();
+
+        let value = toml.get("integer").unwrap();
+
+        assert_eq!(99, value.get_integer("key1", None));
+        assert_eq!(42, value.get_integer("key2", None));
+        assert_eq!(0, value.get_integer("key3", None));
+        assert_eq!(-17, value.get_integer("key4", None));
+
+        for ix in 0..10 {
+            assert_eq!(ix, value.get_integer("key5", Some(ix)));
+        }
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_get_integer_fail() {
+        let toml_raw = include_str!("valid/example-v0.4.0.toml");
+        let toml: Toml = toml_raw.parse().unwrap();
+
+        let value = toml.get("integer").unwrap();
+        value.get_table("key5", None);
+    }
+
+    #[test]
+    fn test_get_table() {
+        let toml_raw = include_str!("valid/example-v0.4.0.toml");
+        let toml: Toml = toml_raw.parse().unwrap();
+
+        let value = toml.get_table("table", None);
+
+        assert_eq!(
+            r#"{"inline": Table({"name": Table({"first": String("Tom"), "last": String("Preston-Werner")}), "point": Table({"x": Integer(1), "y": Integer(2)})}), "key": String("value"), "subtable": Table({"key": String("another value")})}"#,
+            format!("{:?}", value)
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_get_table_fail() {
+        let toml_raw = include_str!("valid/example-v0.4.0.toml");
+        let toml: Toml = toml_raw.parse().unwrap();
+
+        toml.get_table("table2", None);
+    }
+
+    #[test]
+    fn test_get_array() {
+        let toml_raw = include_str!("valid/example-v0.4.0.toml");
+        let toml: Toml = toml_raw.parse().unwrap();
+
+        let value = toml["array"].get_array("key1", None);
+
+        assert_eq!(
+            r#"[Integer(1), Integer(2), Integer(3)]"#,
+            format!("{:?}", value)
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_get_array_fail() {
+        let toml_raw = include_str!("valid/example-v0.4.0.toml");
+        let toml: Toml = toml_raw.parse().unwrap();
+
+        toml["array"].get_array("key7", None);
+    }
+}

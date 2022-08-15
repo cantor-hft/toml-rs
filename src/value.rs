@@ -97,6 +97,23 @@ impl Value {
         index.index_mut(self)
     }
 
+    /// Index into a TOML array or map, retrieving the value as an integer.
+    ///
+    /// If the index is present, we panic if the associated value isn't an integer, and return the
+    /// integer otherwise.
+    ///
+    /// If the index isn't present, we panic if default isn't specified (i.e., is None), and return
+    /// the default otherwise.
+    pub fn get_integer<I: Index>(&self, index: I, default: Option<i64>) -> i64 {
+        if let Some(value) = self.get(index) {
+            value
+                .as_integer()
+                .unwrap_or_else(|| panic!("existing value {:?} isn't an integer.", value))
+        } else {
+            default.unwrap_or_else(|| panic!("index not found, and no default supplied."))
+        }
+    }
+
     /// Extracts the integer value if it is an integer.
     pub fn as_integer(&self) -> Option<i64> {
         match *self {
@@ -108,6 +125,23 @@ impl Value {
     /// Tests whether this value is an integer.
     pub fn is_integer(&self) -> bool {
         self.as_integer().is_some()
+    }
+
+    /// Index into a TOML array or map, retrieving the value as a float.
+    ///
+    /// If the index is present, we panic if the associated value isn't an float, and return the
+    /// float otherwise.
+    ///
+    /// If the index isn't present, we panic if default isn't specified (i.e., is None), and return
+    /// the default otherwise.
+    pub fn get_float<I: Index>(&self, index: I, default: Option<f64>) -> f64 {
+        if let Some(value) = self.get(index) {
+            value
+                .as_float()
+                .unwrap_or_else(|| panic!("existing value {:?} isn't a float.", value))
+        } else {
+            default.unwrap_or_else(|| panic!("index not found, and no default supplied."))
+        }
     }
 
     /// Extracts the float value if it is a float.
@@ -123,6 +157,23 @@ impl Value {
         self.as_float().is_some()
     }
 
+    /// Index into a TOML array or map, retrieving the value as a bool.
+    ///
+    /// If the index is present, we panic if the associated value isn't a bool, and return the
+    /// bool otherwise.
+    ///
+    /// If the index isn't present, we panic if default isn't specified (i.e., is None), and return
+    /// the default otherwise.
+    pub fn get_bool<I: Index>(&self, index: I, default: Option<bool>) -> bool {
+        if let Some(value) = self.get(index) {
+            value
+                .as_bool()
+                .unwrap_or_else(|| panic!("existing value {:?} isn't a bool.", value))
+        } else {
+            default.unwrap_or_else(|| panic!("index not found, and no default supplied."))
+        }
+    }
+
     /// Extracts the boolean value if it is a boolean.
     pub fn as_bool(&self) -> Option<bool> {
         match *self {
@@ -136,6 +187,27 @@ impl Value {
         self.as_bool().is_some()
     }
 
+    /// Index into a TOML array or map, retrieving the value as a &str.
+    ///
+    /// If the index is present, we panic if the associated value isn't a &str, and return the
+    /// &str otherwise.
+    ///
+    /// If the index isn't present, we panic if default isn't specified (i.e., is None), and return
+    /// the default otherwise.
+    pub fn get_str<'a, 'b, 'c, I: Index>(&'a self, index: I, default: Option<&'b str>) -> &'c str
+    where
+        'a: 'c,
+        'b: 'c,
+    {
+        if let Some(value) = self.get(index) {
+            value
+                .as_str()
+                .unwrap_or_else(|| panic!("existing value {:?} isn't a str.", value))
+        } else {
+            default.unwrap_or_else(|| panic!("index not found, and no default supplied."))
+        }
+    }
+
     /// Extracts the string of this value if it is a string.
     pub fn as_str(&self) -> Option<&str> {
         match *self {
@@ -147,6 +219,31 @@ impl Value {
     /// Tests if this value is a string.
     pub fn is_str(&self) -> bool {
         self.as_str().is_some()
+    }
+
+    /// Index into a TOML array or map, retrieving the value as a Datetime.
+    ///
+    /// If the index is present, we panic if the associated value isn't a Datetime, and return the
+    /// Datetime otherwise.
+    ///
+    /// If the index isn't present, we panic if default isn't specified (i.e., is None), and return
+    /// the default otherwise.
+    pub fn get_datetime<'a, 'b, 'c, I: Index>(
+        &'a self,
+        index: I,
+        default: Option<&'b Datetime>,
+    ) -> &'c Datetime
+    where
+        'a: 'c,
+        'b: 'c,
+    {
+        if let Some(value) = self.get(index) {
+            value
+                .as_datetime()
+                .unwrap_or_else(|| panic!("existing value {:?} isn't a Datetime.", value))
+        } else {
+            default.unwrap_or_else(|| panic!("index not found, and no default supplied."))
+        }
     }
 
     /// Extracts the datetime value if it is a datetime.
@@ -169,6 +266,31 @@ impl Value {
         self.as_datetime().is_some()
     }
 
+    /// Index into a TOML array or map, retrieving the value as an array.
+    ///
+    /// If the index is present, we panic if the associated value isn't an array, and return the
+    /// array otherwise.
+    ///
+    /// If the index isn't present, we panic if default isn't specified (i.e., is None), and return
+    /// the default otherwise.
+    pub fn get_array<'a, 'b, 'c, I: Index>(
+        &'a self,
+        index: I,
+        default: Option<&'b Vec<Value>>,
+    ) -> &'c Vec<Value>
+    where
+        'a: 'c,
+        'b: 'c,
+    {
+        if let Some(value) = self.get(index) {
+            value
+                .as_array()
+                .unwrap_or_else(|| panic!("existing value {:?} isn't an array.", value))
+        } else {
+            default.unwrap_or_else(|| panic!("index not found, and no default supplied."))
+        }
+    }
+
     /// Extracts the array value if it is an array.
     pub fn as_array(&self) -> Option<&Vec<Value>> {
         match *self {
@@ -188,6 +310,31 @@ impl Value {
     /// Tests whether this value is an array.
     pub fn is_array(&self) -> bool {
         self.as_array().is_some()
+    }
+
+    /// Index into a TOML array or map, retrieving the value as a Table.
+    ///
+    /// If the index is present, we panic if the associated value isn't a Table, and return the
+    /// Table otherwise.
+    ///
+    /// If the index isn't present, we panic if default isn't specified (i.e., is None), and return
+    /// the default otherwise.
+    pub fn get_table<'a, 'b, 'c, I: Index>(
+        &'a self,
+        index: I,
+        default: Option<&'b Table>,
+    ) -> &'c Table
+    where
+        'a: 'c,
+        'b: 'c,
+    {
+        if let Some(value) = self.get(index) {
+            value
+                .as_table()
+                .unwrap_or_else(|| panic!("existing value {:?} isn't a table.", value))
+        } else {
+            default.unwrap_or_else(|| panic!("index not found, and no default supplied."))
+        }
     }
 
     /// Extracts the table value if it is a table.
