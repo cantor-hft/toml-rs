@@ -216,6 +216,15 @@ impl Value {
         }
     }
 
+    /// Extracts the array value
+    pub fn str(&self) -> &str {
+        if let Some(s) = self.as_str() {
+            s
+        } else {
+            panic!("existing value isn't an array.");
+        }
+    }
+
     /// Tests if this value is a string.
     pub fn is_str(&self) -> bool {
         self.as_str().is_some()
@@ -307,6 +316,24 @@ impl Value {
         }
     }
 
+    /// Extracts the array value
+    pub fn array(&self) -> &Vec<Value> {
+        if let Some(arr) = self.as_array() {
+            arr
+        } else {
+            panic!("existing value isn't an array.");
+        }
+    }
+
+    /// Extracts the array value
+    pub fn array_mut(&mut self) -> &mut Vec<Value> {
+        if let Some(arr) = self.as_array_mut() {
+            arr
+        } else {
+            panic!("existing value isn't an array.");
+        }
+    }
+
     /// Tests whether this value is an array.
     pub fn is_array(&self) -> bool {
         self.as_array().is_some()
@@ -350,6 +377,24 @@ impl Value {
         match *self {
             Value::Table(ref mut s) => Some(s),
             _ => None,
+        }
+    }
+
+    /// Extracts the table value
+    pub fn table(&self) -> &Table {
+        if let Some(table) = self.as_table() {
+            table
+        } else {
+            panic!("existing value isn't a table.");
+        }
+    }
+
+    /// Extracts the table value
+    pub fn table_mut(&mut self) -> &mut Table {
+        if let Some(table) = self.as_table_mut() {
+            table
+        } else {
+            panic!("existing value isn't a table.");
         }
     }
 
