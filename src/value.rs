@@ -122,6 +122,11 @@ impl Value {
         }
     }
 
+    /// Extracts the integer value if it is an integer.
+    pub fn integer(&self) -> i64 {
+        self.as_integer().unwrap()
+    }
+
     /// Tests whether this value is an integer.
     pub fn is_integer(&self) -> bool {
         self.as_integer().is_some()
