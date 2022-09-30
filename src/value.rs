@@ -157,6 +157,11 @@ impl Value {
         }
     }
 
+    /// Extracts the float value if it is a float.
+    pub fn float(&self) -> f64 {
+        self.as_float().unwrap()
+    }
+
     /// Tests whether this value is a float.
     pub fn is_float(&self) -> bool {
         self.as_float().is_some()
