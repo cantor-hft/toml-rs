@@ -45,6 +45,18 @@ pub type Array = Vec<Value>;
 pub type Table = Map<String, Value>;
 
 impl Value {
+    /// A convenience function to read the contents of a file into a TOML object. Useful for tests.
+    pub fn read_from_file<'a, T>(file_loc: T) -> Value
+    where
+        T: Into<&'a str>,
+    {
+        let mut input = String::new();
+        std::fs::File::open(file_loc.into())
+            .and_then(|mut f| std::io::Read::read_to_string(&mut f, &mut input))
+            .unwrap();
+        input.parse().unwrap()
+    }
+
     /// Convert a `T` into `toml::Value` which is an enum that can represent
     /// any valid TOML data.
     ///
