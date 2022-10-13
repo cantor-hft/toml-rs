@@ -57,6 +57,26 @@ impl Value {
         input.parse().unwrap()
     }
 
+    /// Recursively replaces all Strings in this value with another String.
+    pub fn substitute(&mut self, token: &String, replacer: &String) {
+        match self {
+            Value::String(x) => {
+                *x = x.replace(token, replacer);
+            }
+            Value::Array(x) => {
+                for val in x.iter_mut() {
+                    val.substitute(token, replacer);
+                }
+            }
+            Value::Table(x) => {
+                for (_, val) in x.iter_mut() {
+                    val.substitute(token, replacer);
+                }
+            }
+            _ => {}
+        }
+    }
+
     /// Convert a `T` into `toml::Value` which is an enum that can represent
     /// any valid TOML data.
     ///
