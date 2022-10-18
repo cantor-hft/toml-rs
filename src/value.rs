@@ -386,6 +386,11 @@ impl Value {
         self.as_array().is_some()
     }
 
+    /// Creates a new table
+    pub fn empty_table() -> Value {
+        Value::Table(Table::new())
+    }
+
     /// Index into a TOML array or map, retrieving the value as a Table.
     ///
     /// If the index is present, we panic if the associated value isn't a Table, and return the

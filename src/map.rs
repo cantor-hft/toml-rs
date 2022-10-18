@@ -120,8 +120,8 @@ impl Map<String, Value> {
     /// value is returned. The key is not updated, though; this matters for
     /// types that can be `==` without being identical.
     #[inline]
-    pub fn insert(&mut self, k: String, v: Value) -> Option<Value> {
-        self.map.insert(k, v)
+    pub fn insert<K: ToString>(&mut self, k: K, v: Value) -> Option<Value> {
+        self.map.insert(k.to_string(), v)
     }
 
     /// Removes a key from the map, returning the value at the key if the key
@@ -304,8 +304,8 @@ impl<'de> de::Deserialize<'de> for Map<String, Value> {
             {
                 let mut values = Map::new();
 
-                while let Some((key, value)) = visitor.next_entry()? {
-                    values.insert(key, value);
+                while let Some((key, value)) = visitor.next_entry::<String, Value>()? {
+                    values.insert(key.to_string(), value);
                 }
 
                 Ok(values)
