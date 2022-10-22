@@ -1323,3 +1323,13 @@ impl<'a, 'de> de::Visitor<'de> for DatetimeOrTable<'a> {
         }
     }
 }
+
+#[cfg(test)]
+pub mod tests {
+    use crate::Value;
+
+    #[test]
+    fn simple_test() {
+        Value::read_from_file("src/sample.toml");
+    }
+}
